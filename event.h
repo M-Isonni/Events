@@ -10,17 +10,17 @@ class Event
     Event(){};
     ~Event(){};
 
-    void AddListener(T func)
+    void AddListener(T listener)
     {
-        functions.push_back(func);
+        functions.push_back(listener);
     }
 
-    void RemoveListener(T func)
+    void RemoveListener(T listener)
     {   
         int len = functions.size();
         for(int i = 0; i< len;i++)
         {
-            if(functions[i]==func)
+            if(functions[i]==listener)
             {
                 functions.erase(functions.begin()+i);
                 break;
@@ -41,24 +41,6 @@ class Event
     void operator--()
     {
         functions.pop_back();
-    }
-
-    void operator+=(T func)
-    {
-         functions.push_back(func);
-    }
-
-    void operator-=(T func)
-    {
-        int len = functions.size();
-        for(int i = 0; i< len;i++)
-        {
-            if(functions[i]==func)
-            {
-                functions.erase(functions.begin()+i);
-                break;
-            }
-        }
     }
 
     template<typename... Args>
