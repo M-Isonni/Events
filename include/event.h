@@ -4,9 +4,10 @@
 template <class T>
 class Event
 {
-    private:
+private:
     std::vector<T> functions;
-    public:
+
+public:
     Event(){};
     ~Event(){};
 
@@ -16,13 +17,13 @@ class Event
     }
 
     void RemoveListener(T func)
-    {   
+    {
         int len = functions.size();
-        for(int i = 0; i< len;i++)
+        for (int i = 0; i < len; i++)
         {
-            if(functions[i]==func)
+            if (functions[i] == func)
             {
-                functions.erase(functions.begin()+i);
+                functions.erase(functions.begin() + i);
                 break;
             }
         }
@@ -45,28 +46,28 @@ class Event
 
     void operator+=(T func)
     {
-         functions.push_back(func);
+        functions.push_back(func);
     }
 
     void operator-=(T func)
     {
         int len = functions.size();
-        for(int i = 0; i< len;i++)
+        for (int i = 0; i < len; i++)
         {
-            if(functions[i]==func)
+            if (functions[i] == func)
             {
-                functions.erase(functions.begin()+i);
+                functions.erase(functions.begin() + i);
                 break;
             }
         }
     }
 
-    template<typename... Args>
+    template <typename... Args>
     void Call(Args... args)
     {
-        for(auto f : functions)
+        for (auto f : functions)
         {
             f(args...);
         }
-    }  
+    }
 };
